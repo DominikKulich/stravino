@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <script>document.documentElement.classList.add('js')</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stravino — stravovací systém pro vaši kuchyni</title>
+  <meta name="description" content="Sklad, jídelníček a objednávky obědů (čip i web) na jednom místě. Náhrada DOSu, Excelu a papíru pro provozy s vlastní kuchyní. Vyzkoušejte živé demo zdarma." />
+  <link rel="canonical" href="https://www.stravino.cz/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stravino" />
+  <meta property="og:title" content="Stravino — stravovací systém pro vaši kuchyni" />
+  <meta property="og:description" content="Sklad, jídelníček a objednávky obědů (čip i web) na jednom místě. Náhrada DOSu, Excelu a papíru." />
+  <meta property="og:url" content="https://www.stravino.cz/" />
+  <meta property="og:locale" content="cs_CZ" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Stravino — stravovací systém pro vaši kuchyni" />
+  <meta name="twitter:description" content="Sklad, jídelníček a objednávky obědů (čip i web) na jednom místě." />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICA8cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI2IiBmaWxsPSIjMTAxODI4Ii8+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJtMTYgMi0yLjMgMi4zYTMgMyAwIDAgMCAwIDQuMmwxLjggMS44YTMgMyAwIDAgMCA0LjIgMEwyMiA4Ii8+CiAgICA8cGF0aCBkPSJNMTUgMTUgMy4zIDMuM2E0LjIgNC4yIDAgMCAwIDAgNmw3LjMgNy4zYy43LjcgMiAuNyAyLjggMEwxNSAxNVptMCAwIDcgNyIvPgogICAgPHBhdGggZD0ibTIuMSAyMS44IDYuNC02LjMiLz4KICAgIDxwYXRoIGQ9Im0xOSA1LTcgNyIvPgogIDwvZz4KPC9zdmc+Cg==" />
+  <link rel="stylesheet" href="./assets/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Stravino",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "Stravovací systém pro provozy s vlastní kuchyní — sklad, jídelníček a objednávky obědů (čip u terminálu i web) na jednom místě.",
+    "url": "https://www.stravino.cz/",
+    "offers": {
+      "@type": "Offer",
+      "price": "7900",
+      "priceCurrency": "CZK",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "7900",
+        "priceCurrency": "CZK",
+        "unitText": "MONTH"
+      }
+    },
+    "creator": { "@type": "Person", "name": "Dominik Kulich", "url": "https://www.dominikkulich.cz" }
+  }
+  </script>
+</head>
+<body>
+
+<!-- Sprite s ikonami (lucide, ISC licence — stejná ikonová sada jako appka). -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-warehouse" viewBox="0 0 24 24"><path d="M18 21V10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v11"/><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 1.132-1.803l7.95-3.974a2 2 0 0 1 1.837 0l7.948 3.974A2 2 0 0 1 22 8z"/><path d="M6 13h12"/><path d="M6 17h12"/></symbol>
+  <symbol id="i-chef-hat" viewBox="0 0 24 24"><path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"/><path d="M6 17h12"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M8 13h.01"/><path d="M12 13h.01"/><path d="M16 13h.01"/><path d="M8 17h.01"/><path d="M12 17h.01"/><path d="M16 17h.01"/></symbol>
+  <symbol id="i-credit-card" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M8 18v-1"/><path d="M12 18v-6"/><path d="M16 18v-3"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+  <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></symbol>
+  <symbol id="i-graduation" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="i-heart-pulse" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+  <symbol id="i-factory" viewBox="0 0 24 24"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></symbol>
+</svg>
+
+<a class="skip-link" href="#hlavni" style="position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:10px 16px;border-radius:8px;z-index:999">Přeskočit na obsah</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__row">
+    <a href="#top" class="logotype">
+      <span class="logotype__mark"><svg class="icon"><use href="#i-chef-hat"/></svg></span>
+      Stravino
+    </a>
+    <nav aria-label="Hlavní navigace">
+      <ul class="nav__links">
+        <li><a href="#funkce">Funkce</a></li>
+        <li><a href="#jak-to-funguje">Jak to funguje</a></li>
+        <li><a href="#pro-koho">Využití</a></li>
+        <li><a href="#integrace">Tech stack</a></li>
+        <li><a href="#cenik">Ceník</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--brand btn--sm nav__cta" href="stravino-demo.html">Vyzkoušet demo</a>
+    <button class="nav__burger" id="burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg class="icon" style="width:18px;height:18px" aria-hidden="true"><use href="#i-menu" id="burger-icon"/></svg>
+    </button>
+  </div>
+  <div class="nav__mobile wrap" id="mobile-menu">
+    <a href="#funkce">Funkce</a>
+    <a href="#jak-to-funguje">Jak to funguje</a>
+    <a href="#pro-koho">Využití</a>
+    <a href="#integrace">Tech stack</a>
+    <a href="#cenik">Ceník</a>
+    <a href="#kontakt">Kontakt</a>
+    <a class="btn btn--brand btn--block" href="stravino-demo.html">Vyzkoušet demo</a>
+  </div>
+</header>
+
+<main id="hlavni">
+<span id="top"></span>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <span class="badge center" style="justify-content:center"><span class="badge__dot"></span>Stravovací systém pro vlastní kuchyni</span>
+    <h1>Profesionální systém pro <span>kompletní provoz stravování.</span></h1>
+    <p class="lede">Od skladu a receptur přes jídelníčky a objednávky až po výdej, náklady a uzávěrky. Stravino řeší celý provoz kuchyně v jednom systému.</p>
+    <div class="hero__actions">
+      <a class="btn btn--brand" href="stravino-demo.html">Vyzkoušet živé demo</a>
+      <a class="btn btn--outline" href="#kontakt">Domluvit ukázku</a>
+    </div>
+    <p class="hero__trust">Objednání systému na telefonu <a href="tel:+420775370101" style="color:rgba(255,255,255,0.75);text-decoration:underline;text-underline-offset:2px">+420 775 370 101</a></p>
+  </div>
+
+  <div class="hero__frame-wrap reveal">
+    <div class="frame frame--browser">
+      <div class="frame__bar">
+        <span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span>
+        <span class="frame__url"><svg class="icon" style="width:10px;height:10px"><use href="#i-lock"/></svg>app.stravino.cz/prehled</span>
+      </div>
+      <img src="./assets/screenshots/hero-prehled.png" alt="Přehled kuchyně v administraci Stravino — dnešní vaření, sklad, plnění norem a poslední pohyby" style="display:block;width:100%;height:auto" width="1801" height="1182" />
+    </div>
+
+    <div class="chips" aria-hidden="true">
+      <span class="chip"><svg class="icon"><use href="#i-warehouse"/></svg>Sklad a FIFO</span>
+      <span class="chip"><svg class="icon"><use href="#i-chef-hat"/></svg>Recepty</span>
+      <span class="chip"><svg class="icon"><use href="#i-credit-card"/></svg>Objednávky čipem i webem</span>
+      <span class="chip"><svg class="icon"><use href="#i-chart"/></svg>Uzávěrka na klik</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. VŠECHNO NA JEDNOM MÍSTĚ -->
+<section class="section section--white theme-light" id="funkce">
+  <div class="wrap">
+    <div class="center measure reveal">
+      <p class="eyebrow">Propracovaný systém</p>
+      <h2 class="title">Objednávky, jídelníček, sklad i výdej v jednom.</h2>
+      <p class="lede" style="margin-top:14px">Pod jednoduchým ovládáním je propracovaný systém — sklad s FIFO oceňováním, receptury s automatickým odpisem surovin, nákladové normy i uzávěrky. Žádná odlehčená appka na objednávky, ale kompletní nástroj pro provoz kuchyně.</p>
+    </div>
+
+    <div class="grid grid--2" style="margin-top:48px">
+      <div class="card card--lg reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-credit-card"/></svg></span>
+        <h3>Objednávky stravy</h3>
+        <p>Strávník si sám objedná čipem u výdeje nebo z mobilu, klidně na dva týdny dopředu — bez volání do kuchyně a bez papírků na dveřích.</p>
+      </div>
+      <div class="card card--lg reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-calendar"/></svg></span>
+        <h3>Správa jídelníčku</h3>
+        <p>Jídelníček naplánujete na týdny dopředu a hromadně zveřejníte strávníkům jedním kliknutím — s alergeny u každého jídla.</p>
+      </div>
+      <div class="card card--lg reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-monitor"/></svg></span>
+        <h3>Výdejní terminály</h3>
+        <p>Dotykový kiosk u jídelny — strávník přiloží RFID čip a objedná oběd na dva týdny dopředu, bez přihlašování. Po chvíli nečinnosti se sám odhlásí, ať zůstane identita v bezpečí na sdíleném zařízení.</p>
+      </div>
+      <div class="card card--lg reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-chart"/></svg></span>
+        <h3>Přehledy a administrativa</h3>
+        <p>Sklad s FIFO oceňováním, receptury i dodavatelé, počty strávníků, nákladové normy porovnané se skutečností a měsíční uzávěrka s exportem do XLSX a PDF pro účetnictví. Role pro strávníka, kuchyni i správce, ke všemu auditní log — kdo co v systému změnil a kdy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2b. DO DETAILU -->
+<section class="section section--zebra theme-light" id="detaily">
+  <div class="wrap">
+    <div class="center measure reveal">
+      <p class="eyebrow">Do detailu</p>
+      <h2 class="title">Nejen objednávky.<br /><span style="color:var(--accent-text)">Kompletní provoz kuchyně.</span></h2>
+      <p class="lede" style="margin-top:14px">Stravino pokrývá i provozní detaily, které v jednodušších systémech chybí.</p>
+    </div>
+
+    <div class="grid grid--4" style="margin-top:48px">
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-warehouse"/></svg></span>
+        <h3>Sklad a FIFO</h3>
+        <p>Příjemky, výdejky, převodky, inventura. Oceňování metodou FIFO, hlídání minimálních zásob a expirace surovin.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-chef-hat"/></svg></span>
+        <h3>Receptury a „vaření"</h3>
+        <p>Ke každému jídlu receptura, i s polotovary. Klik na „uvařit" a systém sám odepíše suroviny podle skutečného počtu porcí.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-users"/></svg></span>
+        <h3>Ubytované skupiny</h3>
+        <p>Hromadné zadání snídaní, obědů i večeří na celý pobyt najednou — bez objednávání po jednom.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-alert"/></svg></span>
+        <h3>Alergeny</h3>
+        <p>Automaticky odvozené z receptury, i přes polotovary. 14 alergenů dle vyhlášky, žádné ruční dopisování.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-chart"/></svg></span>
+        <h3>Nákladové normy</h3>
+        <p>Porovnání rozpočtové normy se skutečným nákladem z výdejek — hned vidíte, jestli se vaří v rozpočtu.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-database"/></svg></span>
+        <h3>Měsíční uzávěrka</h3>
+        <p>Export do XLSX a PDF pro účetnictví na pár kliků, místo ručního sčítání na konci měsíce.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-lock"/></svg></span>
+        <h3>Role a audit log</h3>
+        <p>Přihlašování přes Keycloak (strávník / kuchyně / správce), audit log každé změny v systému.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-refresh"/></svg></span>
+        <h3>Nastavení bez programátora</h3>
+        <p>Provozní parametry (lhůta uzávěrky, měna…) se mění přímo v administraci, ne v kódu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3a. UKÁZKA — OBJEDNÁNÍ -->
+<section class="section section--white theme-light" id="ukazka-objednavka">
+  <div class="wrap">
+    <div class="showcase reveal">
+      <div class="showcase__text">
+        <p class="eyebrow">Pohled strávníka</p>
+        <h2 class="title">Objednání během několika sekund</h2>
+        <p class="lede" style="margin-top:14px">Uživatel vidí aktuální nabídku a jednoduše si zvolí jídlo.</p>
+        <ul class="showcase__list">
+          <li><svg class="icon"><use href="#i-check"/></svg>Aktuální jídelníček i s vyznačenými alergeny</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Objednávka na dva týdny dopředu</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Z mobilu, tabletu i počítače</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Přihlášení e-mailem a heslem, žádný nový účet navíc</li>
+        </ul>
+      </div>
+      <div class="showcase__frame">
+        <div class="frame frame--phone">
+          <div class="frame__bar"><span class="frame__notch"></span></div>
+          <img src="./assets/screenshots/showcase-objednavka.png" alt="Objednávání obědů — týdenní jídelníček s výběrem porcí a alergeny" style="display:block;width:100%;height:auto" width="736" height="1183" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. JAK TO FUNGUJE -->
+<section class="section section--zebra theme-light" id="jak-to-funguje">
+  <div class="wrap">
+    <div class="center measure reveal">
+      <p class="eyebrow">Jak to funguje</p>
+      <h2 class="title">Od jídelníčku po uzávěrku, ve čtyřech krocích</h2>
+    </div>
+
+    <div class="steps grid grid--4">
+      <div class="steps__line" aria-hidden="true"></div>
+      <div class="step reveal">
+        <span class="step__num">01</span>
+        <h3>Vytvoříte jídelníček</h3>
+        <p>Naplánujete jídla na týdny dopředu a hromadně je zveřejníte strávníkům.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step__num">02</span>
+        <h3>Uživatel objedná</h3>
+        <p>Strávník si vybere jídlo čipem u výdeje nebo z mobilu, klidně týdny dopředu.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step__num">03</span>
+        <h3>Kuchyně získá přehled</h3>
+        <p>Denní rozcestník s počty porcí podle receptury — a rovnou z něj spustí vaření.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step__num">04</span>
+        <h3>Uzavřete měsíc</h3>
+        <p>Norma vs. skutečnost na jeden pohled, export uzávěrky pro účetnictví.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PRO KOHO -->
+<section class="section section--white theme-light" id="pro-koho">
+  <div class="wrap">
+    <div class="center measure reveal">
+      <p class="eyebrow">Pro koho je Stravino</p>
+      <h2 class="title">Pro každý provoz s vlastní kuchyní</h2>
+      <p class="lede" style="margin-top:14px">Kdekoli se dnes vaří podle papírové evidence, staré DOS aplikace nebo Excelu.</p>
+    </div>
+
+    <div class="grid grid--5" style="margin-top:48px">
+      <div class="card reveal center">
+        <span class="card__icon" style="margin-left:auto;margin-right:auto"><svg class="icon"><use href="#i-building"/></svg></span>
+        <h3>Firmy</h3>
+        <p>Interní stravování zaměstnanců.</p>
+      </div>
+      <div class="card reveal center">
+        <span class="card__icon" style="margin-left:auto;margin-right:auto"><svg class="icon"><use href="#i-graduation"/></svg></span>
+        <h3>Školní jídelny</h3>
+        <p>Školy a školská zařízení.</p>
+      </div>
+      <div class="card reveal center">
+        <span class="card__icon" style="margin-left:auto;margin-right:auto"><svg class="icon"><use href="#i-heart-pulse"/></svg></span>
+        <h3>Zdravotnická zařízení</h3>
+        <p>Nemocnice, léčebny a ambulantní provozy.</p>
+      </div>
+      <div class="card reveal center">
+        <span class="card__icon" style="margin-left:auto;margin-right:auto"><svg class="icon"><use href="#i-home"/></svg></span>
+        <h3>Domovy a sociální služby</h3>
+        <p>Pobytová zařízení a domovy pro seniory.</p>
+      </div>
+      <div class="card reveal center">
+        <span class="card__icon" style="margin-left:auto;margin-right:auto"><svg class="icon"><use href="#i-factory"/></svg></span>
+        <h3>Závodní stravování</h3>
+        <p>Provozní a průmyslové kantýny.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. VÝHODY -->
+<section class="section section--zebra theme-light" id="vyhody">
+  <div class="wrap">
+    <div class="center measure reveal">
+      <p class="eyebrow">Výhody</p>
+      <h2 class="title">Méně papírování, víc přehledu</h2>
+    </div>
+
+    <div class="grid grid--3" style="margin-top:48px">
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-box"/></svg></span>
+        <h3>Méně ruční administrativy</h3>
+        <p>Objednávky, sklad i uzávěrka bez přepisování do Excelu nebo na papír.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-chart"/></svg></span>
+        <h3>Aktuální počty objednávek</h3>
+        <p>Kuchyně vidí v reálném čase, kolik porcí se dnes objednalo.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-chef-hat"/></svg></span>
+        <h3>Přehled pro kuchyň</h3>
+        <p>Denní rozcestník s předvyplněnými počty porcí podle receptury.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-zap"/></svg></span>
+        <h3>Jednoduché ovládání pro strávníky</h3>
+        <p>Objednání během pár vteřin — čipem u výdeje nebo z mobilu.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-lock"/></svg></span>
+        <h3>Centrální správa</h3>
+        <p>Sklad, jídelníček i objednávky spravujete z jedné administrace.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__icon"><svg class="icon"><use href="#i-monitor"/></svg></span>
+        <h3>Přístup z PC i telefonu</h3>
+        <p>Responzivní web funguje na počítači, tabletu i mobilu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. INTEGRACE A TECHNOLOGIE -->
+<section class="section section--white theme-light" id="integrace">
+  <div class="wrap">
+    <div class="center measure reveal">
+      <p class="eyebrow">Integrace a technologie</p>
+      <h2 class="title">Ověřený stack, otevřené API</h2>
+      <p class="lede" style="margin-top:14px">Aktivně vyvíjené technologie, které za pár let neskončí bez podpory — a poběží stejně na malém serveru jedné kuchyně i na provozu s více terminály.</p>
+    </div>
+
+    <div class="chips reveal" style="margin-top:32px">
+      <span class="chip badge--soft"><svg class="icon"><use href="#i-code"/></svg>Webové rozhraní</span>
+      <span class="chip badge--soft"><svg class="icon"><use href="#i-monitor"/></svg>Výdejní terminály</span>
+      <span class="chip badge--soft"><svg class="icon"><use href="#i-box"/></svg>Lokální provoz</span>
+      <span class="chip badge--soft"><svg class="icon"><use href="#i-zap"/></svg>Otevřené API</span>
+      <span class="chip badge--soft"><svg class="icon"><use href="#i-refresh"/></svg>Import/export XLSX, PDF</span>
+    </div>
+
+    <div class="grid grid--3" style="margin-top:32px">
+      <div class="card reveal" style="display:flex;gap:16px;align-items:flex-start;text-align:left">
+        <span class="card__icon" style="margin-bottom:0;flex-shrink:0"><svg class="icon"><use href="#i-database"/></svg></span>
+        <div><h3>PostgreSQL</h3><p>Databáze — trezor na všechna data, transakčně spolehlivá.</p></div>
+      </div>
+      <div class="card reveal" style="display:flex;gap:16px;align-items:flex-start;text-align:left">
+        <span class="card__icon" style="margin-bottom:0;flex-shrink:0"><svg class="icon"><use href="#i-zap"/></svg></span>
+        <div><h3>FastAPI (Python)</h3><p>Backend a API — rychlé, moderní, samo si generuje dokumentaci.</p></div>
+      </div>
+      <div class="card reveal" style="display:flex;gap:16px;align-items:flex-start;text-align:left">
+        <span class="card__icon" style="margin-bottom:0;flex-shrink:0"><svg class="icon"><use href="#i-code"/></svg></span>
+        <div><h3>React + TypeScript</h3><p>Rozhraní v prohlížeči — přehledné, funguje i na mobilu a tabletu.</p></div>
+      </div>
+      <div class="card reveal" style="display:flex;gap:16px;align-items:flex-start;text-align:left">
+        <span class="card__icon" style="margin-bottom:0;flex-shrink:0"><svg class="icon"><use href="#i-key"/></svg></span>
+        <div><h3>Keycloak</h3><p>Přihlašování a role — standard OpenID Connect, umí SSO s Active Directory.</p></div>
+      </div>
+      <div class="card reveal" style="display:flex;gap:16px;align-items:flex-start;text-align:left">
+        <span class="card__icon" style="margin-bottom:0;flex-shrink:0"><svg class="icon"><use href="#i-refresh"/></svg></span>
+        <div><h3>Redis + Celery</h3><p>Úlohy na pozadí — export uzávěrky, hlídání expirací, appka nikdy nečeká.</p></div>
+      </div>
+      <div class="card reveal" style="display:flex;gap:16px;align-items:flex-start;text-align:left">
+        <span class="card__icon" style="margin-bottom:0;flex-shrink:0"><svg class="icon"><use href="#i-box"/></svg></span>
+        <div><h3>Docker + Nginx</h3><p>Nasazení na jednom virtuálním serveru (VM), HTTPS, jedním příkazem.</p></div>
+      </div>
+    </div>
+
+    <div class="grid grid--2" style="margin-top:16px">
+      <div class="card reveal" style="display:flex;gap:16px;align-items:flex-start;text-align:left;background:var(--brand-tint);border-color:rgba(47,111,237,0.25)">
+        <span class="card__icon" style="margin-bottom:0;flex-shrink:0;background:#fff"><svg class="icon"><use href="#i-monitor"/></svg></span>
+        <div>
+          <h3>Moderní webová aplikace</h3>
+          <p>Stravino běží přímo v prohlížeči — žádná instalace na jednotlivé stanice, žádný tlustý klient. Funguje stejně na počítači, tabletu i mobilu, přihlásíte se jen e-mailem a heslem.</p>
+        </div>
+      </div>
+      <div class="card reveal" style="display:flex;gap:16px;align-items:flex-start;text-align:left;background:var(--brand-tint);border-color:rgba(47,111,237,0.25)">
+        <span class="card__icon" style="margin-bottom:0;flex-shrink:0;background:#fff"><svg class="icon"><use href="#i-box"/></svg></span>
+        <div>
+          <h3>Nasazení: jeden server, Docker, hotovo</h3>
+          <p>Web, administrace, kiosk terminál, databáze i úlohy na pozadí — všechno v Docker kontejnerech na jediném virtuálním serveru. Žádný cluster, žádná databázová farma. Nasazení i aktualizace jedním příkazem, HTTPS přes reverzní proxy Nginx.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. CENÍK -->
+<section class="section section--zebra theme-light" id="cenik">
+  <div class="wrap">
+    <div class="center measure reveal">
+      <p class="eyebrow">Ceník</p>
+      <h2 class="title">Jedno předplatné, žádné skryté položky</h2>
+      <p class="lede" style="margin-top:14px">Vždy on-premise — systém běží na vašem serveru, žádný hosting u nás.</p>
+    </div>
+
+    <div class="tier reveal" style="max-width:420px;margin:48px auto 0">
+      <p class="tier__name" style="font-size:22px">Stravino — kompletní systém</p>
+      <p style="margin-top:14px"><strong style="font-weight:800;font-size:2.5rem;letter-spacing:-0.02em;color:var(--ink)">7 900 Kč</strong><span style="font-size:14px;color:var(--muted)"> / měsíc</span></p>
+      <p style="font-size:13px;color:var(--muted-2);margin-top:2px">bez DPH · všechny funkce, aktualizace a provoz systému v ceně</p>
+      <ul class="tier__list">
+        <li><svg class="icon"><use href="#i-check"/></svg>Sklad, receptury a jídelníček</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>Objednávky čipem i přes web</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>Ubytované skupiny a alergeny</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>Nákladové normy, reporty a měsíční uzávěrka</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>Aktualizace a technická podpora</li>
+      </ul>
+      <a class="btn btn--brand btn--block" href="#kontakt">Chci nezávaznou nabídku</a>
+    </div>
+    <p class="pricing-fine">Jednorázově k tomu <strong style="color:var(--ink-soft)">Implementace a spuštění systému — 24 000 Kč</strong>: konfigurace provozu, založení uživatelů a rolí, nastavení jídelny, import počátečních dat, zprovoznění terminálu a čipů, základní školení a pomoc při ostrém spuštění. Nasazení je vždy on-premise na serveru vašeho provozu. Úpravy a integrace nad rámec základu (Active Directory, napojení na účetní systém, další terminály a provozovny) řešíme individuálně, dle dohody.</p>
+  </div>
+</section>
+
+<!-- O TVŮRCI -->
+<section class="section section--white theme-light" id="o-tvurci">
+  <div class="wrap">
+    <div class="founder-card reveal">
+      <p class="eyebrow">Kdo za tím stojí</p>
+      <h2 class="title" style="font-size:1.4rem">Dominik Kulich</h2>
+      <p>IT specialista a bezpečnostní konzultant zaměřený na modernizaci firemního IT — servery, sítě, kybernetickou bezpečnost (Wazuh SIEM, FortiGate) a Microsoft 365. Stravino vzniklo jako odpověď na to, co v terénu vídám často: kuchyně, které pořád jedou na programech z devadesátek, v Excelu nebo na papíře.</p>
+      <a href="https://www.dominikkulich.cz" target="_blank" rel="noopener noreferrer">
+        dominikkulich.cz
+        <svg class="icon"><use href="#i-arrow-up-right"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="section section--zebra theme-light" id="kontakt">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="eyebrow">Kontakt</p>
+        <h2 class="title">Máte zájem?</h2>
+        <p class="lede" style="margin-top:14px;max-width:420px">Napište pár vět o vašem provozu — ozvu se s nabídkou na míru.</p>
+
+        <form id="contact-form" style="margin-top:32px" action="mailto:dominik.kulich@email.cz" method="get">
+          <div class="field-row">
+            <label class="field">Jméno
+              <input type="text" name="jmeno" id="f-jmeno" required placeholder="Jan Novák" autocomplete="name" />
+            </label>
+            <label class="field">E-mail
+              <input type="email" name="email" id="f-email" required placeholder="jan@provoz.cz" autocomplete="email" />
+            </label>
+          </div>
+          <label class="field">Telefon (nepovinné)
+            <input type="tel" name="telefon" id="f-telefon" placeholder="+420 xxx xxx xxx" autocomplete="tel" />
+          </label>
+          <label class="field">Zpráva
+            <textarea name="zprava" id="f-zprava" rows="4" placeholder="Kolik strávníků denně, kolik výdejních míst, co dnes používáte…"></textarea>
+          </label>
+          <button type="submit" class="btn btn--brand" style="align-self:flex-start;padding-left:32px;padding-right:32px">Odeslat poptávku</button>
+          <p class="form-note">Otevře se váš e-mailový klient s předvyplněnou zprávou.</p>
+        </form>
+      </div>
+
+      <div class="contact-card reveal">
+        <h3>Přímý kontakt</h3>
+        <a class="contact-row" href="mailto:dominik.kulich@email.cz">
+          <svg class="icon"><use href="#i-mail"/></svg>dominik.kulich@email.cz
+        </a>
+        <a class="contact-row" href="tel:+420775370101">
+          <svg class="icon"><use href="#i-phone"/></svg>+420 775 370 101
+        </a>
+        <a class="contact-row" href="https://www.dominikkulich.cz" target="_blank" rel="noopener noreferrer">
+          <svg class="icon"><use href="#i-arrow-up-right"/></svg>dominikkulich.cz
+        </a>
+        <p class="contact-card__note">
+          <svg class="icon"><use href="#i-shield-check"/></svg>
+          Bezpečnost, GDPR a data řešíme stejně vážně jako samotný sklad — hesla jen kryptograficky, audit log každé změny, připraveno na monitoring (Zabbix) a bezpečnostní dohled (Wazuh).
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer section--white theme-light">
+  <div class="wrap">
+    <a href="#top" class="logotype">
+      <span class="logotype__mark"><svg class="icon"><use href="#i-chef-hat"/></svg></span>
+      Stravino
+    </a>
+    <small>© 2026 Stravino · vytvořil <a href="https://www.dominikkulich.cz" target="_blank" rel="noopener noreferrer">Dominik Kulich</a></small>
+  </div>
+</footer>
+
+<script src="./assets/script.js"></script>
+</body>
+</html>

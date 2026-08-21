@@ -445,13 +445,13 @@
     <div class="center measure reveal">
       <p class="eyebrow">Ceník</p>
       <h2 class="title">Jedno předplatné, žádné skryté položky</h2>
-      <p class="lede" style="margin-top:14px">Vždy on-premise — systém běží na vašem serveru, žádný hosting u nás.</p>
+      <p class="lede" style="margin-top:14px">Na vašem serveru, nebo hostované u nás v cloudu — vyberete si.</p>
     </div>
 
     <div class="tier reveal" style="max-width:420px;margin:48px auto 0">
       <p class="tier__name" style="font-size:22px">Stravino — kompletní systém</p>
       <p style="margin-top:14px"><strong style="font-weight:800;font-size:2.5rem;letter-spacing:-0.02em;color:var(--ink)">7 900 Kč</strong><span style="font-size:14px;color:var(--muted)"> / měsíc</span></p>
-      <p style="font-size:13px;color:var(--muted-2);margin-top:2px">bez DPH · všechny funkce, aktualizace a provoz systému v ceně</p>
+      <p style="font-size:13px;color:var(--muted-2);margin-top:2px">všechny funkce, aktualizace a provoz systému v ceně</p>
       <ul class="tier__list">
         <li><svg class="icon"><use href="#i-check"/></svg>Sklad, receptury a jídelníček</li>
         <li><svg class="icon"><use href="#i-check"/></svg>Objednávky čipem i přes web</li>
@@ -460,8 +460,9 @@
         <li><svg class="icon"><use href="#i-check"/></svg>Aktualizace a technická podpora</li>
       </ul>
       <a class="btn btn--brand btn--block" href="#kontakt">Chci nezávaznou nabídku</a>
+      <p style="font-size:13px;color:var(--muted);margin:16px 0 0;padding-top:16px;border-top:1px solid var(--line)">Nechcete řešit vlastní server? <strong style="color:var(--ink-soft)">Hostování v cloudu +2 000 Kč/měsíc</strong> — o server, zálohy a aktualizace se postaráme my.</p>
     </div>
-    <p class="pricing-fine">Jednorázově k tomu <strong style="color:var(--ink-soft)">Implementace a spuštění systému — 24 000 Kč</strong>: konfigurace provozu, založení uživatelů a rolí, nastavení jídelny, import počátečních dat, zprovoznění terminálu a čipů, základní školení a pomoc při ostrém spuštění. Nasazení je vždy on-premise na serveru vašeho provozu. Úpravy a integrace nad rámec základu (Active Directory, napojení na účetní systém, další terminály a provozovny) řešíme individuálně, dle dohody.</p>
+    <p class="pricing-fine">Jednorázově k tomu <strong style="color:var(--ink-soft)">Implementace a spuštění systému — 24 000 Kč</strong>: konfigurace provozu, založení uživatelů a rolí, nastavení jídelny, import počátečních dat, zprovoznění terminálu a čipů, základní školení a pomoc při ostrém spuštění. Standardně nasazujeme on-premise na serveru vašeho provozu; cloud hosting je volitelný příplatek. Úpravy a integrace nad rámec základu (Active Directory, napojení na účetní systém, další terminály a provozovny) řešíme individuálně, dle dohody.</p>
   </div>
 </section>
 
@@ -489,7 +490,9 @@
         <h2 class="title">Máte zájem?</h2>
         <p class="lede" style="margin-top:14px;max-width:420px">Napište pár vět o vašem provozu — ozvu se s nabídkou na míru.</p>
 
-        <form id="contact-form" style="margin-top:32px" action="mailto:dominik.kulich@email.cz" method="get">
+        <form id="contact-form" style="margin-top:32px" action="https://formspree.io/f/xrpzjovl" method="POST">
+          <input type="hidden" name="_subject" value="Poptávka Stravino" />
+          <input type="text" name="_gotcha" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <div class="field-row">
             <label class="field">Jméno
               <input type="text" name="jmeno" id="f-jmeno" required placeholder="Jan Novák" autocomplete="name" />
@@ -504,8 +507,8 @@
           <label class="field">Zpráva
             <textarea name="zprava" id="f-zprava" rows="4" placeholder="Kolik strávníků denně, kolik výdejních míst, co dnes používáte…"></textarea>
           </label>
-          <button type="submit" class="btn btn--brand" style="align-self:flex-start;padding-left:32px;padding-right:32px">Odeslat poptávku</button>
-          <p class="form-note">Otevře se váš e-mailový klient s předvyplněnou zprávou.</p>
+          <button type="submit" class="btn btn--brand" id="contact-submit" style="align-self:flex-start;padding-left:32px;padding-right:32px">Odeslat poptávku</button>
+          <p class="form-note" id="contact-note">Odešle se rovnou, bez otevírání e-mailového klienta.</p>
         </form>
       </div>
 

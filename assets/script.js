@@ -1,7 +1,7 @@
 // Stravino marketing web — jen drobná progresivní vylepšení. Veškerý OBSAH je
 // v HTML bez ohledu na tenhle soubor (kvůli SEO, viz docs/DECISIONS.md
-// 2026-08-19); appka funguje i s vypnutým JS, jen bez animací a bez
-// mailto: předvyplnění (formulář má jako fallback obyčejný GET na mailto:).
+// 2026-08-19); appka funguje i s vypnutým JS, jen bez animací a bez AJAX
+// odeslání formuláře (ten pak jede jako obyčejný POST na Formspree).
 (function () {
   'use strict'
 
@@ -43,26 +43,38 @@
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible') })
   }
 
-  // --- Kontaktní formulář: mailto: s předvyplněným předmětem a tělem ---
+  // --- Kontaktní formulář: AJAX odeslání na Formspree (formspree.io) ---
+  // Bez JS funguje formulář i tak (obyčejný POST na action=), jen skončí
+  // na výchozí děkovací stránce Formspree místo zůstání na téhle stránce.
   var form = document.getElementById('contact-form')
   if (form) {
+    var note = document.getElementById('contact-note')
+    var submitBtn = document.getElementById('contact-submit')
+    var noteDefault = note.textContent
+
     form.addEventListener('submit', function (e) {
       e.preventDefault()
-      var jmeno = document.getElementById('f-jmeno').value.trim()
-      var email = document.getElementById('f-email').value.trim()
-      var telefon = document.getElementById('f-telefon').value.trim()
-      var zprava = document.getElementById('f-zprava').value.trim()
+      submitBtn.disabled = true
+      note.textContent = 'Odesílám…'
 
-      var predmet = 'Poptávka Stravino — ' + jmeno
-      var radky = ['Jméno: ' + jmeno, 'E-mail: ' + email]
-      if (telefon) radky.push('Telefon: ' + telefon)
-      radky.push('', zprava)
-
-      var mailto =
-        'mailto:dominik.kulich@email.cz' +
-        '?subject=' + encodeURIComponent(predmet) +
-        '&body=' + encodeURIComponent(radky.join('\n'))
-      window.location.href = mailto
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (response) {
+          submitBtn.disabled = false
+          if (response.ok) {
+            form.reset()
+            note.textContent = 'Děkujeme, poptávka byla odeslána — ozveme se co nejdřív.'
+          } else {
+            note.textContent = 'Nepovedlo se odeslat. Zkuste to prosím znovu, nebo napište přímo na dominik.kulich@email.cz.'
+          }
+        })
+        .catch(function () {
+          submitBtn.disabled = false
+          note.textContent = 'Nepovedlo se odeslat. Zkuste to prosím znovu, nebo napište přímo na dominik.kulich@email.cz.'
+        })
     })
   }
 })()
